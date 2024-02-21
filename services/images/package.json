@@ -1,0 +1,39 @@
+{
+  "name": "images-service",
+  "version": "1.0.0",
+  "description": "Service Images Processing",
+  "author": "Luis Alejandro Guzman",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "ISC",
+  "scripts": {
+    "ci": "yarn --frozen-lockfile",
+    "build": "tsc",
+    "set-up": "yarn add link:../../libs && yarn",
+    "set-up-ci": "yarn link @image-processing/libs && yarn ci",
+    "start": "(start npm run watch && start npm run serverless) || (npm run watch & npm run serverless)",
+    "watch": "tsc --watch -p ./tsconfig.json",
+    "serverless": "serverless offline start --prefix documents --noPrependStageInUrl --noAuth",
+    "deploy-primary": "tsc && serverless deploy --stage dev",
+    "dp": "tsc && serverless deploy --stage dev"
+  },
+  "dependencies": {
+    "dotenv": "16.4.5",
+    "express": "4.18.2",
+    "joi": "17.12.2",
+    "multer": "1.4.5-lts.1",
+    "serverless-http": "3.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.23.9",
+    "@babel/preset-env": "7.23.9",
+    "@babel/preset-typescript": "7.23.3",
+    "@types/node": "20.11.19",
+    "serverless": "3.38.0",
+    "serverless-dotenv-plugin": "6.0.0",
+    "serverless-plugin-common-excludes": "4.0.0",
+    "serverless-plugin-include-dependencies": "6.0.0",
+    "ts-node": "10.9.2",
+    "typescript": "5.3.3"
+  }
+}
